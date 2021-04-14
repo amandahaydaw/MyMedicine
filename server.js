@@ -15,9 +15,11 @@ var port = process.env.PORT || 8080;
 
 app.use(express.static(__dirname + '/public'));
 
-app.get("/test", function(request, response) {
-    var user_name = request.query.user_name;
-    response.end("Hello " + user_name + "!");
+app.get("/UserLogin", function(request, response) {
+    // var user_name = request.query.user_name;
+    // response.end("Hello " + user_name + "!");
+
+    response.sendFile(__dirname + '/public/SignIn.html');
 });
 
 
