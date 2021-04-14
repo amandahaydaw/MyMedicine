@@ -1,0 +1,449 @@
+@import url('http://fonts.googleapis.com/css?family=Roboto');
+@import url('https://fonts.googleapis.com/css?family=Oxygen|Roboto+Slab');
+body,
+html {
+    -moz-height: 100%;
+    -moz-width: 90%;
+    -moz-max-width: 760px;
+    -webkit-height: 100%;
+    -webkit-width: 90%;
+    -webkit-max-width: 760px;
+    background-color: #d1d1d1;
+    margin: 20px;
+}
+
+body {
+    height: 100%;
+    width: 90%;
+    max-width: 460px;
+    max-height: 90%;
+    min-width: 460px;
+    min-height: 800px;
+    background-color: #fffdea;
+    margin: auto;
+    margin-bottom: 10px;
+    position: relative;
+    transform: perspective(1px) translateX()(-50%);
+    font-family: sans-serif;
+    border-radius: 3px;
+    padding-top: 40px;
+    padding-bottom: 40px;
+    padding-right: 40px;
+    padding-left: 40px;
+    background-color: #ffffff;
+    font-family: 'Oxygen', sans-serif;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.container {
+    position: relative;
+    margin: auto;
+}
+
+
+/*sign in form*/
+
+.form-signin,
+.form-AddMedi,
+.form-signup {
+    max-width: 330px;
+    padding: 15px;
+    margin: 0 auto;
+}
+
+.form-signin .form-signin-heading,
+.form-signin .checkbox,
+.form-signup .form-signup-heading {
+    margin-bottom: 10px;
+    font-size: 16px;
+}
+
+.form-signin .checkbox {
+    font-weight: normal;
+}
+
+.form-signin .form-control,
+.form-signup .form-control {
+    position: relative;
+    height: auto;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    padding: 10px;
+    font-size: 16px;
+}
+
+.form-signin .form-control:focus,
+.form-signup .form-control:focus {
+    z-index: 2;
+}
+
+.form-signup input[type="username"],
+.form-signup input[type="email"],
+.form-signup input[type="password"],
+.form-signup input[type="confirmpassword"] {
+    margin-bottom: 10px;
+    border-bottom-right-radius: 0;
+    border-bottom-left-radius: 0;
+}
+
+.form-signin input[type="email"],
+.form-AddMedi input[type="medicationname"] {
+    margin-bottom: -1px;
+    border-bottom-right-radius: 0;
+    border-bottom-left-radius: 0;
+}
+
+.form-signin input[type="password"],
+.form-AddMedi input[type="medicationdosage"] {
+    margin-bottom: 10px;
+    margin-top: 10px;
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+}
+
+.checkbox {
+    margin-top: 20px;
+    margin-bottom: 30px;
+}
+
+h1.title,
+h1 {
+    font-size: 30px;
+    font-family: 'Roboto', sans-serif;
+    font-weight: 400;
+    color: #b2b2b2;
+    text-align: center;
+}
+
+hr {
+    margin-bottom: 40px;
+}
+
+label {
+    font-size: 16px;
+    color: #3F3F40;
+}
+
+.header-label {
+    margin-top: 4px;
+    font-size: 16px;
+    color: #3F3F40;
+}
+
+.main-label {
+    font-size: 20px;
+    font-weight: bold;
+    color: #3F3F40;
+    text-align: center;
+}
+
+.login-button {
+    margin: 10px;
+    width: 50%;
+    height: 60%;
+    font-size: 14px;
+    font-family: arial;
+    font-style: bold;
+    border-radius: 0px;
+    background-color: #33b5e5;
+}
+
+.repeat {
+    margin-top: 70px;
+    margin-bottom: 40px;
+}
+
+.btn {
+    background-color: #33b5e5;
+    border-color: #33b5e5;
+    color: #ffffff;
+}
+
+.btn-group {
+    border-color: #1f708e;
+    border-width: 3px;
+    font-family: sans-serif
+}
+
+.dosagebtn {
+    margin-top: 20px;
+    background-color: white;
+    border-color: #9E9E9E;
+    color: #9E9E9E;
+    font-size: 14px;
+    text-align: left;
+}
+
+.dosagebtn:hover {
+    margin-top: 20px;
+    background-color: #d1d1d1;
+    border-color: #9E9E9E;
+    color: #9E9E9E;
+}
+
+.dosagebtn:active {
+    margin-top: 20px;
+    background-color: white;
+    border-color: #9E9E9E;
+    color: #9E9E9E;
+    font-size: 14px;
+    text-align: left;
+}
+
+.caret {
+    float: right;
+}
+
+.repeatbtn {
+    background-color: white;
+    border-color: #9E9E9E;
+    color: #9E9E9E;
+    font-size: 14px;
+    margin-left: 12px;
+    text-align: left;
+    display: inline-block;
+}
+
+.repeatbtn:hover {
+    background-color: #d1d1d1;
+    border-color: #9E9E9E;
+    color: #9E9E9E;
+}
+
+.week {
+    display: inline-block;
+    text-indent: 5px;
+}
+
+.input-group {
+    width: 100%;
+}
+
+.logo {
+    width: 70%;
+    height: 70%;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 20px;
+}
+
+.repeatevery {
+    font-weight: normal;
+}
+
+.time,
+.days {
+    margin-top: 40px;
+    margin-bottom: 20px;
+}
+
+.timecontainer {
+    margin-top: 10px;
+    width: 100%;
+}
+
+.timecontainer select {
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    box-shadow: none;
+    -webkit-appearance: none;
+    color: #9E9E9E;
+    height: 30px;
+    width: 82px;
+    display: inline-block;
+    text-align: left;
+    margin-right: 5px;
+    font-size: 12px;
+    background: linear-gradient(45deg, transparent 50%, white 50%), linear-gradient(135deg, white 50%, transparent 50%), linear-gradient(to right, #33b5e5, #33b5e5);
+    ;
+    background: url('assets/arrowdown.png') no-repeat right;
+    background-size: 20%;
+}
+
+.timecontainer select:focus {
+    outline: none;
+}
+
+.repeatevery {
+    margin-top: 10px;
+    width: 100%;
+}
+
+.repeatevery select {
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    box-shadow: none;
+    -webkit-appearance: none;
+    color: #9E9E9E;
+    height: 30px;
+    width: 82px;
+    display: inline-block;
+    text-align: left;
+    margin-right: 5px;
+    margin-left: 5px;
+    font-size: 12px;
+    background: linear-gradient(45deg, transparent 50%, white 50%), linear-gradient(135deg, white 50%, transparent 50%), linear-gradient(to right, #33b5e5, #33b5e5);
+    ;
+    background: url('assets/arrowdown.png') no-repeat right;
+    background-size: 20%;
+}
+
+.repeatevery select:focus {
+    outline: none;
+}
+
+h4 {
+    font-family: 'Roboto', sans-serif;
+}
+
+#addAnotherTime {
+    margin-top: 5px;
+    background-color: #33b5e5;
+    border-color: #33b5e5;
+    color: #ffffff;
+}
+
+#addAnotherTime:hover {
+    background-color: #9E9E9E;
+    border-color: #9E9E9E;
+    color: #ffffff;
+}
+
+.cancel,
+.save {
+    width: 100px;
+    margin-bottom: 10px;
+    display: inline-block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+
+/*Main Dashboard*/
+
+.header {
+    margin-bottom: 5px;
+    margin-top: -2%;
+    padding: 3%;
+    background-color: #33b5e5;
+    box-shadow: 0px 1px 3px #b5b5b5;
+    border-radius: 2px;
+}
+
+.header-label,
+.main-label {
+    color: #ffffff;
+}
+
+#currentDate,
+#tomorrowDate {
+    text-align: right;
+}
+
+.green-check {
+    margin-top: 3px;
+    margin-bottom: 6px;
+    height: 30px;
+    width: auto;
+}
+
+.med-item {
+    margin: 5px;
+    background-color: #ffffff;
+    padding-left: 25px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #ccc;
+    border-top: 1px solid #e8e8e8;
+    font-size: 25px;
+    color: #3F3F40;
+    box-shadow: 0px 1px 3px #d1d1d1;
+    border-radius: 4px;
+}
+
+#rightArrow {
+    /*	position: fixed;
+	bottom: 50%;
+	right: 9%;
+	width: 60px;
+	height: 60px;*/
+    position: absolute;
+    right: -20px;
+    top: 30%;
+    width: 60px;
+    height: 60px;
+}
+
+#leftArrow {
+    position: fixed;
+    bottom: 50%;
+    left: 1%;
+    width: 60px;
+    height: 60px;
+    -moz-transform: scaleX(-1);
+    -o-transform: scaleX(-1);
+    -webkit-transform: scaleX(-1);
+    transform: scaleX(-1);
+    filter: FlipH;
+    -ms-filter: "FlipH";
+}
+
+#newMed {
+    position: fixed;
+    bottom: 300px;
+    width: 60px;
+    height: 60px;
+}
+
+#exitButton {
+    position: fixed;
+    width: 20px;
+    height: 20px;
+    top: 30px;
+}
+
+#home {
+    background: #ffffff;
+    /* For browsers that do not support gradients */
+    background: -webkit-linear-gradient(#f2f2f2, #ffffff);
+    /* For Safari 5.1 to 6.0 */
+    background: -o-linear-gradient(#f2f2f2, #ffffff);
+    /* For Opera 11.1 to 12.0 */
+    background: -moz-linear-gradient(#f2f2f2, #ffffff);
+    /* For Firefox 3.6 to 15 */
+    background: linear-gradient(#f2f2f2, #ffffff);
+    /* Standard syntax */
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+}
+
+#medTime {
+    color: #000000;
+}
+
+.ellipses {
+    width: 18%;
+    margin-top: -8px;
+}
+
+.medName,
+.medDosage {
+    font-size: 22px;
+    font-style: bold;
+    font-family: 'Oxygen', sans-serif;
+    color: #347ea3;
+}
+
+
+/*-----------------------------SETTINGS----------------------------*/
+
+.sub-p {
+    padding-left: 2em;
+}
+
+.select {
+    float: right;
+    clear: right;
+    border: 3px solid black;
+}

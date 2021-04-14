@@ -6,6 +6,15 @@
     padding-top: 20px;
 }
 
+.home {
+    width: 110%;
+    height: 110%;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 50px;
+}
+
 .form fieldset {
     border: 0px;
     padding: 0px;
