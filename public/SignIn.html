@@ -21,19 +21,47 @@
                 </div>
             </div>
             <div class="main-login main-center col-sm-12">
-                <form class="form-signin" action="MainDashborad.html">
+                <form class="form-signin" id="signin" action="MainDashborad.html">
                     <h2 class="form-signin-heading">Please sign in</h2>
                     <label for="inputEmail" class="sr-only">Email Address</label>
-                    <input name="email" type="email" id="inputEmail" class="form-control" placeholder="Email address" required autofocus>
+                    <input name="email" id="Email" class="form-control" placeholder="Email address" required autofocus>
                     <label for="inputPassword" class="sr-only">Password</label>
-                    <input name="password" type="password" id="inputPassword" class="form-control" placeholder="Password" required>
+                    <input name="password" type="password" id="Password" class="form-control" placeholder="Password" required>
                     <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
                     <a href="createUser.html">Don't have an account? Sign up.</a>
                 </form>
-
             </div>
         </div>
     </div>
+    <script>
+        const form = document.getElementById('signin')
+        form.addEventListener('submit', login)
+
+        async function login(event) {
+            event.preventDefault()
+            const email = document.getElementById('Email').value
+            const password = document.getElementById('Password').value
+            const result = await fetch('/api/login', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    email,
+                    password
+                })
+            }).then((res) => res.json())
+
+            if (result.status === 'ok') {
+
+                console.log('Got the token: ', result.data)
+                localStorage.setItem('token', result.data)
+                window.location.href = "./MainDashborad.html"
+            } else {
+                alert(result.error)
+            }
+        }
+    </script>
 </body>
 
 </html>
