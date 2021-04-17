@@ -22,29 +22,57 @@
                 </div>
             </div>
             <div class="main-login main-center col-sm-12">
-                <form method="post" class="form-signup" action="processcreateaccount.php">
+                <form method="post" class="form-signup" id="signup">
                     <h2 class="form-signup-heading">Create Account</h2>
-                    <label for="inputFirstNameAndLast" class="sr-only">Name</label>
-                    <input name="name" type="text" id="inputFirstNameAndLast" class="form-control" placeholder="First and last name" required autofocus>
-                    <label for="inputEmail" class="sr-only">Email address</label>
-                    <input name="email" type="email" id="inputEmail" class="form-control" placeholder="Email address" required autofocus>
-                    <label for="username" class="sr-only">Create a username</label>
-                    <input name="username" type="text" id="username" class="form-control" placeholder="Username" required autofocus>
+                    <label for="username" class="sr-only">Name</label>
+                    <input name="name" type="text" id="username" class="form-control" placeholder="username" required autofocus>
+                    <label for="username" class="sr-only">Username</label>
+                    <input name="email" type="email" id="Email" class="form-control" placeholder="Email address" required autofocus>
                     <label for="inputPhoneNumber" class="sr-only">Phone Number</label>
                     <input name="phone" type="phonenumber" id="inputPhoneNumber" class="form-control" placeholder="Phone Number" required autofocus>
                     <label for="inputPassword" class="sr-only">Password</label>
-                    <input name="password" type="password" id="inputPassword" class="form-control" placeholder="Password" required>
-                    <label for="inputPassword" class="sr-only">Confirm Password</label>
-                    <input name="confirmpassword" type="password" id="inputPassword" class="form-control" placeholder="Confirm Password" required>
-                    <button class="btn btn-lg btn-primary btn-block" type="submit">Sign Up</button>
+                    <input name="password" type="password" id="Password" class="form-control" placeholder="Password" required>
+                    <!-- <button class="btn btn-lg btn-primary btn-block" type="submit">Sign Up</button> -->
+                    <input class="btn btn-lg btn-primary btn-block" type="submit" value="Submit Form" />
                     <a href="SignIn.html">Do you have an account? Sign in.</a>
                 </form>
+
             </div>
         </div>
     </div>
     </div>
     </div>
     </div>
+    <script>
+        const form = document.getElementById('signup')
+        form.addEventListener('submit', registerUser)
+
+        async function registerUser(event) {
+            event.preventDefault()
+            const email = document.getElementById('Email').value
+            const password = document.getElementById('Password').value
+            const username = document.getElementById('username').value
+            const PhoneNumber = document.getElementById('inputPhoneNumber').value
+            const result = await fetch('/api/register', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    email,
+                    password,
+                    username,
+                    PhoneNumber
+                })
+            }).then((res) => res.json())
+
+            if (result.status === 'ok') {
+                window.location.href = "./SignIn.html"
+            } else {
+                alert(result.error)
+            }
+        }
+    </script>
 </body>
 
 </html>

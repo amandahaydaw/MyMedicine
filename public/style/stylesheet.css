@@ -394,12 +394,13 @@ h4 {
     bottom: 300px;
     width: 60px;
     height: 60px;
+    top: 700px;
 }
 
 #exitButton {
     position: fixed;
-    width: 20px;
-    height: 20px;
+    width: 30px;
+    height: 30px;
     top: 30px;
 }
 
