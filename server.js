@@ -198,7 +198,7 @@ io.on('connection', (socket) => {
 var server = app.listen(port, function() {
     var host = server.address().address;
     // log("app is listening at", "https://" + host, port);
-    console.log(' Server listening on http://' + "localhost" + ':' + port)
+    console.log(' Server listening on http://' + "localhost" + ':' + port + "/signin.html")
 });
 
 //this is only needed for Cloud foundry 
