@@ -12,3 +12,4 @@ jwt in order to login particular user created
 .lean()
 jsonwebtoken npm i jsonwebtoken
 https://www.youtube.com/watch?v=b91XgdyX-SM
+ materialize : npm install materialize-css@next
