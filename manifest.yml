@@ -1,6 +1,5 @@
----
 applications:
 - name:    MyMedicine
 routes:
-  - route: mymedicineapp.us-south.cf.appdomain.cloud
+- route: mymedicineapp.us-south.cf.appdomain.cloud
   memory:  128M
