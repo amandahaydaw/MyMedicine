@@ -59,15 +59,15 @@ var text = ["Monday", [12546, 'Advil', '7:00 AM', 'Yes'],
 /*Creates list for each dashboard*/
 function generateMedList(list) {
     for (i = 1; i < list.length; i++) {
-        var takenIndicator = "<img class='col-xs-4 green-check' src='assets/emptyCircle.png' onclick=diffImage(this)>";
+        var takenIndicator = "<img class='col-xs-4 green-check' src='../images/emptyCircle.png' onclick=diffImage(this)>";
         if (list[i][3] === 'Yes') {
-            takenIndicator = "<img class='col-xs-4 green-check' src='assets/greenCheck.png' onclick=diffImage(this)>"
+            takenIndicator = "<img class='col-xs-4 green-check' src='../images/greenCheck.png' onclick=diffImage(this)>"
         }
         $("#medicationList").append(
             "<div class='row med-item col-xs-12'> \
                 <div class='row'> \
                     <label id='medTime'>" + list[i][3] + "</label> \
-                    <img class='pull-right ellipses' src='assets/ellipses.png' onclick='location.href=\"EditMedi.html\"'> \
+                    <img class='pull-right ellipses' src='../images/ellipses.png' onclick='location.href=\"EditMedi.html\"'> \
                 </div> \
                 <div class='row'> \
                     " + takenIndicator + "\
@@ -81,8 +81,8 @@ function generateMedList(list) {
 
 /*Changes image on whether or not a person took their pill*/
 function diffImage(img) {
-    if (img.src.match("assets/emptyCircle.png")) img.src = "assets/greenCheck.png";
-    else img.src = "assets/emptyCircle.png";
+    if (img.src.match("../images/emptyCircle.png")) img.src = "../images/greenCheck.png";
+    else img.src = "../images/emptyCircle.png";
 }
 
 /*adds anotehr time conatiner to the AddMedi page*/

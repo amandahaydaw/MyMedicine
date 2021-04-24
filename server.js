@@ -2,28 +2,90 @@ let express = require("express");
 
 let app = express();
 const mongoose = require("mongoose");
-// const passport = require("passport");
-// const app = require('express')();
-// const session = require('express-session');
-// const WebAppStrategy = require('ibmcloud-appid').WebAppStrategy;
+const passport = require("passport");
+const session = require('express-session');
+const appID = require("ibmcloud-appid");
 let http = require('http').createServer(app);
 let io = require('socket.io')(http);
 const bodyParser = require("body-parser");
 const bcrypt = require("bcryptjs");
-const user = require('./model/user.js')
-const jwt = require('jsonwebtoken')
+const user = require('./DB/models/user.js');
+// const jwt = require('jsonwebtoken');
+const uri = require('./configurations/env.js');
+const JWT_SECRET = require('./configurations/env.js');
+// const CALLBACK_URL = "/signin.html";
+const CALLBACK_URL = "/ibm/cloud/appid/callback";
+var port = process.env.PORT || 8080;
+const WebAppStrategy = appID.WebAppStrategy;
+app.use(express.static(__dirname + '/public'));
+app.use(session({
+    secret: '123456',
+    resave: true,
+    saveUninitialized: true,
+    proxy: true
+}));
+app.use(passport.initialize());
+app.use(passport.session());
 
-const JWT_SECRET = 'xChzKjT!!0V&VfmxdnhJo2W+XR4*z*!rF68aNMS@66k3yg!MQty!ScObj8fKUt'
 
-// app.use(session({
-//     secret: '123456',
-//     resave: true,
-//     saveUninitialized: true
-// }));
-// app.use(passport.initialize());
-// app.use(passport.session());
-// passport.serializeUser((user, cb) => cb(null, user));
-// passport.deserializeUser((user, cb) => cb(null, user));
+
+
+
+
+let webAppStrategy = new WebAppStrategy(getAppId());
+passport.use(webAppStrategy);
+
+passport.serializeUser((user, cb) => cb(null, user));
+passport.deserializeUser((obj, cb) => cb(null, obj));
+
+app.get(CALLBACK_URL, passport.authenticate(WebAppStrategy.STRATEGY_NAME, { failureRedirect: '/error' }));
+app.use("/protected", passport.authenticate(WebAppStrategy.STRATEGY_NAME));
+app.use('/protected', express.static("protected"));
+
+app.get("/logout", (req, res) => {
+    WebAppStrategy.logout(req);
+    res.redirect("/home.html");
+});
+
+app.use(bodyParser.json()) //converting to json payload
+
+mongoose.connect(uri, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+    useCreateIndex: true
+})
+
+
+//Serves the identity token payload
+app.get("/protected/api/idPayload", async(req, res) => {
+    res.send(req.session[WebAppStrategy.AUTH_CONTEXT].identityTokenPayload);
+    let email = res.req.user.email
+    let name = res.req.user.name
+    req.body = { email, name }
+        // const password = await bcrypt.hash(plainTextPassword, 10) //fix length of password
+    try {
+        const response = await user.create({
+                email,
+                name //,
+                // password
+            })
+            // console.log('User created successfully: ', response)
+    } catch (error) {
+        if (error.code === 11000) {
+            // duplicate key
+            return res.json({ status: 'error', error: 'Username already in use' })
+        }
+        throw error
+    }
+
+
+})
+
+
+
+app.get('/error', (req, res) => {
+    res.send('Authentication Error');
+});
 
 // passport.use(new WebAppStrategy({
 //     clientId: "e6ccd665-ddc6-40e0-887d-cbc51025bae5",
@@ -35,32 +97,9 @@ const JWT_SECRET = 'xChzKjT!!0V&VfmxdnhJo2W+XR4*z*!rF68aNMS@66k3yg!MQty!ScObj8fK
 // }));
 //this to block my wedsite
 // app.use(passport.authenticate(WebAppStrategy.STRATEGY_NAME))
-var port = process.env.PORT || 8080;
-
-app.use(express.static(__dirname + '/public'));
 
 
 
-// const MongoClient = require('mongodb').MongoClient;
-const uri = "mongodb+srv://medicine:test123@sit737.jj6ox.mongodb.net/myFirstDatabase?retryWrites=true&w=majority";
-// const uri = "mongodb://medicine:test123@sit737-shard-00-00.jj6ox.mongodb.net:27017,sit737-shard-00-01.jj6ox.mongodb.net:27017,sit737-shard-00-02.jj6ox.mongodb.net:27017/myFirstDatabase?ssl=true&replicaSet=atlas-erp3hd-shard-0&authSource=admin&retryWrites=true&w=majority"
-// const client = new MongoClient(uri, {
-//     useNewUrlParser: true,
-//     useUnifiedTopology: true
-// });
-
-
-// let collectionMessage;
-
-// client.connect(err => {
-//     collectionMessage = client.db("medicine").collection("user");
-// });
-
-mongoose.connect(uri, {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-    useCreateIndex: true
-})
 
 // let Name, Email, user, Username, Password, DOB, gender, Phone
 
@@ -81,102 +120,81 @@ mongoose.connect(uri, {
 //     }
 
 // }
-// app.get('/user', function(req, res) {
 
-//     let Name = req.query.Name
-//     let Email = req.query.Email
-//     let Username = req.query.Username
-//     let Password = req.query.Password
-//     let DOB = req.query.DOB
-//     let gender = req.query.gender
-//     let Phone = req.query.Phone
-
-//     insertMessage({
-//         Name: Name,
-//         Email: Email,
-//         Username: Username,
-//         Password: Password,
-//         DOB: DOB,
-//         gender: gender,
-//         Phone: Phone
-//     });
-
-//     res.send('user created')
-// });
 // app.get("/UserLogin", function(request, response) {
 //     // var user_name = request.query.user_name;
 //     // response.end("Hello " + user_name + "!");
 
 //     response.sendFile(__dirname + '/public/SignIn.html');
 // });
-app.use(bodyParser.json()) //converting to json payload
-
-
-app.post('/api/login', async(req, res) => {
-    const { email, password } = req.body
-    const users = await user.findOne({ email }).lean()
-
-    if (!users) {
-        return res.json({ status: 'error', error: 'Invalid username/password' })
-    }
-
-    if (await bcrypt.compare(password, users.password)) {
-        // the username, password combination is successful
-
-        const token = jwt.sign({
-                id: users._id,
-                email: users.email
-            },
-            JWT_SECRET
-        )
-        return res.json({ status: 'ok', data: token })
-
-    } else {
-
-        res.json({ status: 'error', error: 'Invalid Email/password' })
-    }
-})
-app.post('/api/register', async(req, res) => {
-
-    const { email, password: plainTextPassword, username, PhoneNumber } = req.body
-    if (!email || typeof email !== 'string') {
-        return res.json({ status: 'error', error: 'Invalid Email' })
-    }
-
-    if (!plainTextPassword || typeof plainTextPassword !== 'string') {
-        return res.json({ status: 'error', error: 'Invalid password' })
-    }
-
-    if (plainTextPassword.length < 5) {
-        return res.json({
-            status: 'error',
-            error: 'Password too small. Should be atleast 6 characters'
-        })
-    }
-    const password = await bcrypt.hash(plainTextPassword, 10) //fix length of password
 
 
 
-    try {
-        const response = await user.create({
-            email,
-            password,
-            username,
-            PhoneNumber
-        })
-        console.log('User created successfully: ', response)
-    } catch (error) {
-        if (error.code === 11000) {
-            // duplicate key
-            return res.json({ status: 'error', error: 'Username already in use' })
-        }
-        throw error
-    }
-    res.json({ status: 'ok' })
+// app.post('/api/login', async(req, res) => {
+//     const { email, password } = req.body
+//     const users = await user.findOne({ email }).lean()
+
+//     if (!users) {
+//         return res.json({ status: 'error', error: 'Invalid username/password' })
+//     }
+
+//     if (await bcrypt.compare(password, users.password)) {
+//         // the username, password combination is successful
+
+//         const token = jwt.sign({
+//                 id: users._id,
+//                 email: users.email
+//             },
+//             JWT_SECRET
+//         )
+//         return res.json({ status: 'ok', data: token })
+
+//     } else {
+
+//         res.json({ status: 'error', error: 'Invalid Email/password' })
+//     }
+// })
+// app.post('/api/register', async(req, res) => {
+
+//     const { email, password: plainTextPassword, username, PhoneNumber } = req.body
+//     if (!email || typeof email !== 'string') {
+//         return res.json({ status: 'error', error: 'Invalid Email' })
+//     }
+
+//     if (!plainTextPassword || typeof plainTextPassword !== 'string') {
+//         return res.json({ status: 'error', error: 'Invalid password' })
+//     }
+
+//     if (plainTextPassword.length < 5) {
+//         return res.json({
+//             status: 'error',
+//             error: 'Password too small. Should be atleast 6 characters'
+//         })
+//     }
+//     const password = await bcrypt.hash(plainTextPassword, 10) //fix length of password
 
 
 
-})
+//     try {
+//         const response = await user.create({
+//             email,
+//             password,
+//             username,
+//             PhoneNumber
+//         })
+//         console.log('User created successfully: ', response)
+//     } catch (error) {
+//         if (error.code === 11000) {
+//             // duplicate key
+//             return res.json({ status: 'error', error: 'Username already in use' })
+//         }
+//         throw error
+//     }
+//     res.json({ status: 'ok' })
+
+
+
+// })
 
 
 //socket test
@@ -191,15 +209,31 @@ io.on('connection', (socket) => {
 
 });
 
+function getAppId() {
+    let config;
 
-// http.listen(port, () => {
-//     console.log("Listening on port ", port);
-// });
+    try {
+        // if running locally we'll have the local config file
+        config = require('./configurations/APPID.json');
+    } catch (e) {
+        if (process.env.APPID_SERVICE_BINDING) { // if running on Kubernetes this env variable would be defined
+            config = JSON.parse(process.env.APPID_SERVICE_BINDING);
+            config.redirectUri = process.env.redirectUri;
+        } else { // running on CF
+            let vcapApplication = JSON.parse(process.env["VCAP_APPLICATION"]);
+            return { "redirectUri": "https://" + vcapApplication["application_uris"][0] + CALLBACK_URL };
+        }
+    }
+    return config;
+}
+
+
+
 var server = app.listen(port, function() {
-    var host = server.address().address;
-    // log("app is listening at", "https://" + host, port);
-    console.log(' Server listening on http://' + "localhost" + ':' + port + "/signin.html")
+    console.log(' Server listening on http://' + "localhost" + ':' + port + "/home.html")
 });
+
+
 
 //this is only needed for Cloud foundry 
 require("cf-deployment-tracker-client").track();

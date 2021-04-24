@@ -37,7 +37,7 @@ body {
 
 .container {
     position: relative;
-    margin: auto;
+    margin: 100;
 }
 
 
@@ -258,7 +258,7 @@ label {
     font-size: 12px;
     background: linear-gradient(45deg, transparent 50%, white 50%), linear-gradient(135deg, white 50%, transparent 50%), linear-gradient(to right, #33b5e5, #33b5e5);
     ;
-    background: url('assets/arrowdown.png') no-repeat right;
+    background: url('../images/arrowdown.png') no-repeat right;
     background-size: 20%;
 }
 
@@ -286,7 +286,7 @@ label {
     font-size: 12px;
     background: linear-gradient(45deg, transparent 50%, white 50%), linear-gradient(135deg, white 50%, transparent 50%), linear-gradient(to right, #33b5e5, #33b5e5);
     ;
-    background: url('assets/arrowdown.png') no-repeat right;
+    background: url('../images/arrowdown.png') no-repeat right;
     background-size: 20%;
 }
 
@@ -390,11 +390,11 @@ h4 {
 }
 
 #newMed {
-    position: fixed;
+    position: relative;
     bottom: 300px;
     width: 60px;
     height: 60px;
-    top: 700px;
+    top: 500px;
 }
 
 #exitButton {
