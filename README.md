@@ -1,18 +1,19 @@
-nodemon
-express-session 
-passport
-ibmcloud-appid
-my appID IBM cloud
-body-parparser  decode body request npm i body-parser
-modele to inform db schema
-mongoose db
-hash passport important for db secuirty 
-npm i bcryptjs package or npm i bcrypt package 
-jwt in order to login particular user created 
-.lean()
-jsonwebtoken npm i jsonwebtoken
-https://www.youtube.com/watch?v=b91XgdyX-SM
- materialize : npm install materialize-css@next
+Getting Started:
+
+This is a sample of MVP pf SIT373 project demostarting a browser app for medication remonder which send a reminder to enduser for theri presicbed medication
+
+Prerequisites:
+npm install
+
+Installation:
+git clone git@github.com:amandahaydaw/MyMedicine.git
+
+Usage:
+Navigate to MYMEDICINE folder
+cd MYMEDICINE
+
+Run:
+npm start
 
 
- npm i concurrently --save-dev to run 2 pakcage together 
+Naviagte to http://localhost:8080/home.html
