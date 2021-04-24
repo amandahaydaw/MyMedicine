@@ -1,8 +1,4 @@
 applications:
-  - name: MyMedicine
-    buildpacks:
-      - sdk-for-nodejs
-    memory: 64M
-    command: node server.js
-    routes:
-      - route: mymedicineapp.us-south.cf.appdomain.cloud
+ - name: GetStartedNode
+   random-route: true
+   memory: 256M
