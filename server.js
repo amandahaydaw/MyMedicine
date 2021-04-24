@@ -15,7 +15,7 @@ app.use(express.static(__dirname + '/public'));
 
 
 var server = app.listen(port, function() {
-    console.log(' Server listening on http://' + "localhost" + ':' + port + "/home.html")
+    // console.log(' Server listening on http://' + "localhost" + ':' + port + "/home.html")
 });
 
 
