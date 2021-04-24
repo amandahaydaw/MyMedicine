@@ -1,5 +1,10 @@
 ---
 applications:
-- name:    hello-node
-  random-route: true
+- name:    MyMedicine
+routes:
+  - route: mymedicineapp.us-south.cf.appdomain.cloud
   memory:  128M
+
+
+
+
