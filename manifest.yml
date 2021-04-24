@@ -3,6 +3,6 @@ applications:
   buildpacks:
     - sdk-for-nodejs
   memory: 64M
-  command: npm start
+  command: node server.js
   routes:
    - route: mymedicineapp.us-south.cf.appdomain.cloud
