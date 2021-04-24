@@ -10,7 +10,7 @@ git clone git@github.com:amandahaydaw/MyMedicine.git
 
 Usage:
 Navigate to MYMEDICINE folder
-cd MYMEDICINE
+/cd MYMEDICINE
 
 Run:
 npm start
