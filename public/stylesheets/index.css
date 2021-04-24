@@ -10,6 +10,7 @@ body {
     display: flex;
     justify-content: center;
     align-items: flex-start;
+    background-color: #4178BE;
 }
 
 .main-container {
@@ -78,8 +79,8 @@ body {
     display: block;
     margin-left: auto;
     margin-right: auto;
-    width: 100px;
-    height: 100px;
+    width: 200px;
+    height: 200px;
     margin-bottom: 41px;
     margin-top: 81px;
 }
