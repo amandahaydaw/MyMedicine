@@ -1,0 +1,147 @@
+<!doctype html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="./bootstrap-3.3.7-dist/css/bootstrap.css">
+    <link rel="stylesheet" type="text/css" href="./stylesheets/stylesheet.css">
+    <link rel="stylesheet" type="text/css" href="./stylesheets/style.css">
+
+
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.10.2/moment.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
+</head>
+
+<body>
+    <div class="container col-sm-12">
+        <div class="row main">
+            <div class="main-center col-sm-12">
+                <form method="POST" class="form-AddMedi" id="AddMedi">
+                    <h1 class="form-medicationname">Add Medication List</h1>
+                    <hr>
+
+                    <div class="ui-widget">
+                        <label for="inputMedicationName" class="sr-only">Prescribed Medication Name</label>
+
+                        <input name="drug_name" type="text" id="inputMedicationName" class="form-control" placeholder="Medication Name" required autofocus>
+                    </div>
+
+                    <br/>
+                    <div class="dosage dropdown">
+                        <div class="ui-widget">
+                            <label for="inputDosage" class="sr-only">Prescribed Medication Dosage</label>
+                            <input name="drug_strength" type="text" id="inputDosage" class="form-control" placeholder="Dosage" required autofocus>
+                        </div>
+                    </div>
+
+                    <div id="time" class="time form-group">
+                        <h4 class="times">Time required to be taken</h4>
+
+                        <div class="row dropdown timecontainer col-sm-12">
+                            <select class="hour block col-md-4" id="hour">
+									<option>-Hour-</option>
+								    <option>01</option>
+								    <option>02</option>
+								    <option>03</option>
+								    <option>04</option>
+								    <option>05</option>
+								    <option>06</option>
+								    <option>07</option>
+								    <option>08</option>
+								    <option>09</option>
+								    <option>10</option>
+								    <option>11</option>
+								    <option>12</option>
+							</select>
+
+                            <select class="minute block col-md-4" id="minute">
+								<option>-Minutes-</option>
+								    <option>00</option>
+								    <option>05</option>
+								    <option>10</option>
+								    <option>15</option>
+								    <option>20</option>
+								    <option>25</option>
+								    <option>30</option>
+								    <option>35</option>
+								    <option>40</option>
+								    <option>45</option> 
+								    <option>50</option>
+									<option>55</option>
+							</select>
+
+                            <select class="AmPm block col-md-4" id="ampm">
+								<span class="caret"></span>
+									<option>-AM/PM-</option>
+								    <option>AM</option>
+								    <option>PM</option>
+							</select>
+                        </div>
+
+
+                    </div>
+                    <div><button class="glyphicon glyphicon-plus-sign btn" id="addAnotherTime"></button></div>
+
+                    <div class="days checkbox abc-checkbox-circle">
+                        <h4 for="days">Days</h4>
+                        <label class="day col-xs-4">
+				            <input type="checkbox" class ="styled" value="Day"> Mon
+				          </label>
+                        <label class="day col-xs-4">
+				            <input type="checkbox" class ="day" value="Day"> Tue
+				          </label>
+                        <label class="day col-xs-4">
+				            <input type="checkbox" class ="day" value="Day"> Wed
+				          </label>
+                        <label class="day col-xs-4">
+				            <input type="checkbox" class ="day" value="Day"> Thur
+				          </label>
+                        <label class="day col-xs-4">
+				            <input type="checkbox" class ="day" value="Day"> Fri
+				          </label>
+                        <label class="day col-xs-4">
+				            <input type="checkbox" class ="day" value="Day"> Sat
+				          </label>
+                        <label class="day col-xs-4">
+				            <input type="checkbox" class ="day" value="Day"> Sun
+				          </label>
+                    </div>
+                    <br>
+                    <div class="repeat">
+                        <h4 for="repeat" class="repeats">Repeat Every</h4>
+                        <div class=" row dropdown repeatevery">
+                            <select class="repeatby block col-md-4">
+									<option>-repeat-</option>
+									    <option>1</option>
+									    <option>2</option>
+									<option>3</option>
+									<option>4</option>
+							  	</select>
+                            <label class="week">Week</label>
+                        </div>
+
+                    </div>
+
+
+                    <div class="buttons col-sm-12">
+                        <a type="button" class="cancel btn btn-md btn-default" href="./Home.html">Cancel</a>
+                        <a type="button" class="save btn btn-md btn-default" href="#">Save</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+
+
+
+</body>
+
+</html>

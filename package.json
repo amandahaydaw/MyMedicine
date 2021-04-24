@@ -19,7 +19,7 @@
     },
     "main": "server.js",
     "scripts": {
-        "start": "node server.js",
+        "start": "nodemon server.js",
         "test": "jest"
     },
     "repository": {
